@@ -1,13 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {Navbar} from './core/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Navbar],
   template: `
-    <h1>Welcome to {{ title() }}!</h1>
+    <app-navbar />
 
-    <router-outlet />
+    <div class="max-w-screen-md mx-auto">
+      <router-outlet />
+    </div>
   `,
   styles: [],
 })
