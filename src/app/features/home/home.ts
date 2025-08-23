@@ -1,6 +1,7 @@
-import {Component, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {Product} from '../../model/product';
 import {JsonPipe} from '@angular/common';
+import {CartService} from '../../core/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ import {JsonPipe} from '@angular/common';
             </div>
             <p>{{product.description}}</p>
             <div class="card-actions justify-end">
-              <button class="btn btn-primary">
+              <button class="btn btn-primary" (click)="cartService.addToCart(product)">
                 Add to Cart
               </button>
             </div>
@@ -29,11 +30,14 @@ import {JsonPipe} from '@angular/common';
     </div>
 
     <pre>{{products() | json}}</pre>
+
+    <pre>{{cartService.items() | json}}</pre>
   `,
   styles: ``
 })
 export default class Home {
   products = signal<Product[]>(initialState)
+  cartService = inject(CartService)
 
 }
 
