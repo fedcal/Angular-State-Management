@@ -1,5 +1,10 @@
 import {computed, Injectable, signal} from '@angular/core';
 
+type Config = {
+  title: string;
+  color: string;
+  enabled: boolean;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +20,9 @@ export class SettingsService {
 
   enableShop = computed(()=> this.config().enableShop);
 
-
+  setConfig(propName: keyof Config, value: string | boolean=true){
+    this.config.update(cfg =>({...cfg, [propName]: value}));
+  }
   setTitle(title: string) {
     this.config.update(cfg => ({...cfg, title: title}));
   }
