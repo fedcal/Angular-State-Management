@@ -20,7 +20,7 @@ export class SettingsService {
 
   enableShop = computed(()=> this.config().enableShop);
 
-  setConfig(propName: keyof Config, value: string | boolean=true){
+  setConfig<K extends keyof Config>(propName: K, value: Config[K]){
     this.config.update(cfg =>({...cfg, [propName]: value}));
   }
   setTitle(title: string) {
