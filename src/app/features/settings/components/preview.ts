@@ -1,8 +1,9 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {SettingsService} from '../../../core/settings.service';
 
 @Component({
   selector: 'app-preview',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   template: `
     <h1 class="text-xl my-6">Preview</h1>

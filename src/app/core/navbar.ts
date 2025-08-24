@@ -1,10 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CartService} from './cart.service';
 import {RouterLink} from '@angular/router';
 import {SettingsService} from './settings.service';
 
 @Component({
   selector: 'app-navbar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink
   ],

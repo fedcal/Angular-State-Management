@@ -5,6 +5,7 @@ type Config = {
   color: string;
   enabled: boolean;
 }
+
 @Injectable({
   providedIn: 'root'
 })
