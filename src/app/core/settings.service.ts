@@ -1,4 +1,4 @@
-import {Injectable, signal} from '@angular/core';
+import {computed, Injectable, signal} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,12 @@ export class SettingsService {
     color: '#ff0000',
     enableShop: true
   })
+
+  title = computed(()=> this.config().title);
+  color = computed(()=> this.config().color);
+
+  enableShop = computed(()=> this.config().enableShop);
+
 
   setTitle(title: string) {
     this.config.update(cfg => ({...cfg, title: title}));

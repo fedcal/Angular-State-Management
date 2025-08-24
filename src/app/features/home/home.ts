@@ -2,6 +2,7 @@ import {Component, inject, signal} from '@angular/core';
 import {Product} from '../../model/product';
 import {JsonPipe} from '@angular/common';
 import {CartService} from '../../core/cart.service';
+import {SettingsService} from '../../core/settings.service';
 
 @Component({
   selector: 'app-home',
@@ -15,19 +16,26 @@ import {CartService} from '../../core/cart.service';
           <figure><img [src]="product.image" [alt]="product.name" /></figure>
           <div class="card-body">
             <div class="flex justify-between">
-              <h2 class="card-title">{{product.name}}</h2>
+              <h2 class="card-title" [style.color]="settingsService.color()">{{product.name}}</h2>
               <div class="card-title">€ {{product.cost}}</div>
             </div>
             <p>{{product.description}}</p>
             <div class="card-actions justify-end">
-              <button class="btn btn-primary" (click)="cartService.addToCart(product)">
-                Add to Cart
-              </button>
+              @if (settingsService.color()) {
+                <button
+                  class="btn btn-primary"
+                  (click)="cartService.addToCart(product)"
+                >
+                  Add to Cart
+                </button>
+              }
             </div>
           </div>
         </div>
       }
     </div>
+
+
 
     <pre>{{products() | json}}</pre>
 
@@ -38,6 +46,8 @@ import {CartService} from '../../core/cart.service';
 export default class Home {
   products = signal<Product[]>(initialState)
   cartService = inject(CartService)
+
+  settingsService = inject(SettingsService)
 
 }
 
